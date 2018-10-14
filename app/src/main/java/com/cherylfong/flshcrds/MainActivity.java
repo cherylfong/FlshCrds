@@ -19,8 +19,10 @@ public class MainActivity extends AppCompatActivity {
                 if(findViewById(R.id.flashc_answer).getVisibility() == View.VISIBLE)
                 {
                     findViewById(R.id.flashc_answer).setVisibility(View.INVISIBLE);
+
                 } else {
                     findViewById(R.id.flashc_answer).setVisibility(View.VISIBLE);
+
                 }
 
             }
