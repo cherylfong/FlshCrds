@@ -1,8 +1,8 @@
 # FlshCrds
-My Flash Card App
+My flashcard app
 
 ### App Description
-This app simulates a real flash card by hiding and showing the answer to a question.
+This app simulates a flashcard by hiding and showing the answer to a question.
 
 ### Walk-though
 
@@ -21,7 +21,23 @@ Taping the question toggles between showing the answer where the question once w
 
 On branch `v3_optional-requirements`:
 
+Shows features implemented in the `Optional` section of this doc.
+
+**Specicially**:
+[X] Style the question and answer side of the card to better distinguish between the two sides
+
+<img src="week2_v3.gif" width=200><br>
+
+On branch `v4_question-with-multiple-choice`:
+
 Shows features implemented in the `Optional` section of this doc. 
+
+**Specicially**:
+- [X] Add responsive multiple choice answers beneath the card
+   - [X] Change the background color of the multiple choice answers when clicked to indicate if the question was answered correctly
+- [X] Further customize and style the card
+
+<img src="week2_v4.gif" width=200><br>
 
 ## Required
 - [X] Create New Project in Android Studio
@@ -31,7 +47,7 @@ Shows features implemented in the `Optional` section of this doc.
 - [X] Push code to GitHub
 ## Optional
 - [X] toggle the flashcard between the question side and the answer side
-- [ ] Style the question and answer side of the card to better distinguish between the two sides
-- [ ] Add selectable multiple choice answers beneath the card
-   - [ ] Change the background color of the multiple choice answers when clicked to indicate whether the question waanswered correctly
-- [ ] Further customize and style the card
+- [X] Style the question and answer side of the card to better distinguish between the two sides
+- [X] Add responsive multiple choice answers beneath the card
+   - [X] Change the background color of the multiple choice answers when clicked to indicate if the question was answered correctly
+- [X] Further customize and style the card
