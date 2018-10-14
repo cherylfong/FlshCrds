@@ -16,15 +16,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
 
-                if(findViewById(R.id.flashc_answer).getVisibility() == View.VISIBLE)
-                {
-                    findViewById(R.id.flashc_answer).setVisibility(View.INVISIBLE);
-                } else {
                     findViewById(R.id.flashc_answer).setVisibility(View.VISIBLE);
-                }
-
+                    findViewById(R.id.flashc_question).setVisibility(View.INVISIBLE);
             }
         });
+
+        findViewById(R.id.flashc_answer).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+
+                findViewById(R.id.flashc_answer).setVisibility(View.INVISIBLE);
+                findViewById(R.id.flashc_question).setVisibility(View.VISIBLE);
+            }
+        });
+
     }
 
 
