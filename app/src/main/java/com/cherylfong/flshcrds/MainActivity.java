@@ -30,6 +30,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.qfill).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+
+                if(findViewById(R.id.qfill).getVisibility() == View.VISIBLE){
+
+                    findViewById(R.id.qfill).setVisibility(View.INVISIBLE);
+
+                }else{
+
+                    findViewById(R.id.qfill).setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
     }
 
 
