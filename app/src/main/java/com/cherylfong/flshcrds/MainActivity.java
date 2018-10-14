@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
 
                     findViewById(R.id.flashc_answer).setVisibility(View.VISIBLE);
                     findViewById(R.id.flashc_question).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.flashc_answer).setBackgroundColor
+                            (getResources().getColor(R.color.colorAccent, null));
             }
         });
 
@@ -30,20 +32,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.qfill).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-
-                if(findViewById(R.id.qfill).getVisibility() == View.VISIBLE){
-
-                    findViewById(R.id.qfill).setVisibility(View.INVISIBLE);
-
-                }else{
-
-                    findViewById(R.id.qfill).setVisibility(View.VISIBLE);
-                }
-            }
-        });
 
     }
 
