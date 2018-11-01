@@ -30,4 +30,14 @@
         android:textAlignment="center"
         android:textSize="40sp"
         android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/addCardButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="22dp"
+        app:srcCompat="@drawable/add_card_plus" />
 </android.widget.RelativeLayout>
