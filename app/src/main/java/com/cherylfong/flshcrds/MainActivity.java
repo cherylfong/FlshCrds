@@ -1,6 +1,7 @@
 package com.cherylfong.flshcrds;
 
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -42,8 +43,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.editCardButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddCard.class);
+
+                TextView q = findViewById(R.id.flashc_question);
+                TextView a = findViewById(R.id.flashc_answer);
+
+                String ans = a.getText().toString();
+                String quest = q.getText().toString();
+
+
+                intent.putExtra("quest", quest);
+                intent.putExtra("ans",  ans);
+
+                startActivityForResult(intent, 100);
+
+            }
+        });
+
 
     }
+
+    // ONLY called when child's finish() is called
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -55,6 +78,12 @@ public class MainActivity extends AppCompatActivity {
             if (intent != null) {
 
                 if (requestCode == 100) {
+
+                    // context i.e. flashcard question textview should on the activity that it resides
+                    Snackbar.make(findViewById(R.id.flashc_question),
+                            "Card successful saved",
+                            Snackbar.LENGTH_SHORT)
+                            .show();
 
                     String quest = intent.getExtras().getString("quest");
                     String ans = intent.getExtras().getString("ans");

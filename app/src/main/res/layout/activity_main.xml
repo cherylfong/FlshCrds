@@ -40,4 +40,15 @@
         android:layout_marginEnd="18dp"
         android:layout_marginBottom="22dp"
         app:srcCompat="@drawable/add_card_plus" />
+
+    <ImageView
+        android:id="@+id/editCardButton"
+        android:layout_width="55dp"
+        android:layout_height="46dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="23dp"
+        app:srcCompat="@drawable/edit_fields" />
+
 </android.widget.RelativeLayout>
