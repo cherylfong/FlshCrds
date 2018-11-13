@@ -7,6 +7,25 @@
     tools:context=".AddCard">
 
     <ImageView
+        android:id="@+id/save_contents_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@+id/closeAddCardButton"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="2dp"
+        app:srcCompat="@drawable/save_fields" />
+
+    <ImageView
+        android:id="@+id/multichoice_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignStart="@+id/closeAddCardButton"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="11dp"
+        app:srcCompat="@drawable/multichoice_option" />
+
+    <ImageView
         android:id="@+id/closeAddCardButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -16,6 +35,7 @@
         android:layout_marginBottom="22dp"
         app:srcCompat="@drawable/add_card_close"
         />
+
 
     <EditText
         android:id="@+id/q_field"
@@ -36,16 +56,35 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="143dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Answer:" />
+        android:hint="Answer:"
+        android:inputType="textShortMessage" />
 
-    <ImageView
-        android:id="@+id/save_contents_button"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+    <EditText
+        android:id="@+id/multichoice_field2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/q_field"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="217dp"
-        app:srcCompat="@drawable/save_fields" />
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="227dp"
+        android:ems="10"
+        android:hint="Answer 2:"
+        android:inputType="textShortMessage"
+        android:visibility="invisible" />
+
+    <EditText
+        android:id="@+id/multichoice_field3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/q_field"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="311dp"
+        android:ems="10"
+        android:hint="Answer 3:"
+        android:inputType="textShortMessage"
+        android:visibility="invisible" />
+
+
 
 </android.widget.RelativeLayout>
