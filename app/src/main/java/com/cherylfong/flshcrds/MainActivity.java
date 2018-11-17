@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     FlashcardDatabase fcDB; // db holder
     List<Flashcard> allFC; // all flash card objects
 
+    int currCardIndex = 0;
+
     public static final int ADD_CARD_REQUEST_CODE = 100;
 
     @Override
@@ -64,6 +66,32 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, AddCard.class);
                 startActivityForResult(intent, 100);
 
+            }
+        });
+
+        // next button
+
+        findViewById(R.id.nextCardButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // increment the next card index when tapped
+                currCardIndex++;
+
+                // when currCardIndex surpasses the last card,
+                // make it back to zero again
+                if(currCardIndex > allFC.size() - 1){
+                    currCardIndex = 0;
+                }
+
+                TextView q = findViewById(R.id.flashc_question);
+                TextView a = findViewById(R.id.flashc_answer);
+
+                q.setText(allFC.get(currCardIndex).getQuestion());
+                a.setText(allFC.get(currCardIndex).getAnswer());
+
+                q.setVisibility(View.VISIBLE);
+                a.setVisibility(View.INVISIBLE);
             }
         });
 

@@ -19,8 +19,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="save_fields" />
-                            <entry key="sourceFile" value="$PROJECT_DIR$/icons/iconmonstr-save-1.svg" />
+                            <entry key="outputName" value="next_card" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/icons/iconmonstr-arrow-28.svg" />
                           </map>
                         </option>
                       </PersistentState>

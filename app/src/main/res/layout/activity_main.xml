@@ -40,4 +40,14 @@
         android:layout_marginEnd="18dp"
         android:layout_marginBottom="22dp"
         app:srcCompat="@drawable/add_card_plus" />
+
+    <ImageView
+        android:id="@+id/nextCardButton"
+        android:layout_width="52dp"
+        android:layout_height="46dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="256dp"
+        app:srcCompat="@drawable/next_card" />
 </android.widget.RelativeLayout>
