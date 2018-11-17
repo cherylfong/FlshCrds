@@ -6,14 +6,39 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
+
+    FlashcardDatabase fcDB; // db holder
+    List<Flashcard> allFC; // all flash card objects
+
+    public static final int ADD_CARD_REQUEST_CODE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // initialize db
+        fcDB = new FlashcardDatabase(this.getApplicationContext());
+        allFC =fcDB.getAllCards();
+
+        // if there are cards in the db
+        // show the first item during app relaunch (not the default)
+        if(allFC != null && allFC.size() > 0){
+
+            TextView q = findViewById(R.id.flashc_question);
+            q.setText(allFC.get(0).getQuestion());
+
+            TextView a = findViewById(R.id.flashc_answer);
+            a.setText(allFC.get(0).getAnswer());
+
+        }
 
         findViewById(R.id.flashc_question).setOnClickListener(new View.OnClickListener(){
             @Override
@@ -54,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
             if (intent != null) {
 
-                if (requestCode == 100) {
+                if (requestCode == ADD_CARD_REQUEST_CODE) {
 
                     String quest = intent.getExtras().getString("quest");
                     String ans = intent.getExtras().getString("ans");
@@ -64,6 +89,9 @@ public class MainActivity extends AppCompatActivity {
 
                     qText.setText(quest);
                     aText.setText(ans);
+
+                    fcDB.insertCard(new Flashcard(quest, ans));
+                    allFC = fcDB.getAllCards(); // updates the list of flashcard objects
                 }
             }
         }
