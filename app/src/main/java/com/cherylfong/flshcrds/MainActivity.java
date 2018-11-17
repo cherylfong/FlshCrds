@@ -3,6 +3,7 @@ package com.cherylfong.flshcrds;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -75,23 +76,32 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                // increment the next card index when tapped
-                currCardIndex++;
 
-                // when currCardIndex surpasses the last card,
-                // make it back to zero again
-                if(currCardIndex > allFC.size() - 1){
-                    currCardIndex = 0;
+                // do this if only there's something in database
+                if(allFC.size() != 0){
+
+
+                    TextView q = findViewById(R.id.flashc_question);
+                    TextView a = findViewById(R.id.flashc_answer);
+
+                    // when currCardIndex surpasses the last card,
+                    // make it back to zero again
+                    if(currCardIndex >= allFC.size() - 1){
+                        currCardIndex = 0;
+                    }else {
+                        // increment the next card index when tapped
+
+                        currCardIndex++;
+                    }
+
+                    q.setText(allFC.get(currCardIndex).getQuestion());
+                    a.setText(allFC.get(currCardIndex).getAnswer());
+
+                    q.setVisibility(View.VISIBLE);
+                    a.setVisibility(View.INVISIBLE);
+
                 }
 
-                TextView q = findViewById(R.id.flashc_question);
-                TextView a = findViewById(R.id.flashc_answer);
-
-                q.setText(allFC.get(currCardIndex).getQuestion());
-                a.setText(allFC.get(currCardIndex).getAnswer());
-
-                q.setVisibility(View.VISIBLE);
-                a.setVisibility(View.INVISIBLE);
             }
         });
 
