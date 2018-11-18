@@ -71,8 +71,8 @@ On branch `v3_optional-requirements`:
 
 Shows features implemented in the `Optional` section of this doc.
 
-**Specicially**:
-[X] Style the question and answer side of the card to better distinguish between the two sides
+**Specifically**:
+- [X] Style the question and answer side of the card to better distinguish between the two sides
 
 <img src="week2_v3.gif" width=200><br>
 
@@ -80,7 +80,7 @@ On branch `v4_question-with-multiple-choice`:
 
 Shows features implemented in the `Optional` section of this doc. 
 
-**Specicially**:
+**Specifically**:
 - [X] Add responsive multiple choice answers beneath the card
    - [X] Change the background color of the multiple choice answers when clicked to indicate if the question was answered correctly
 - [X] Further customize and style the card
