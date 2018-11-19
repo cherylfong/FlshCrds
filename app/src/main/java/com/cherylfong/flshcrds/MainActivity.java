@@ -11,6 +11,7 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import java.util.List;
+import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int currCardIndex = 0;
 
+    private static final int HAPPY_EMOJI_UNI_CODE = 0x1F604;
 
     public static final int ADD_CARD_REQUEST_CODE = 100;
 
@@ -74,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         findViewById(R.id.nextCardButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,8 +96,12 @@ public class MainActivity extends AppCompatActivity {
                         currCardIndex++;
                     }
 
-                    q.setText(allFC.get(currCardIndex).getQuestion());
-                    a.setText(allFC.get(currCardIndex).getAnswer());
+//                    q.setText(allFC.get(currCardIndex).getQuestion());
+//                    a.setText(allFC.get(currCardIndex).getAnswer());
+
+                    int randIndex = getRandIndex();
+                    q.setText(allFC.get(randIndex).getQuestion());
+                    a.setText(allFC.get(randIndex).getAnswer());
 
                     q.setVisibility(View.VISIBLE);
                     a.setVisibility(View.INVISIBLE);
@@ -125,7 +132,9 @@ public class MainActivity extends AppCompatActivity {
 
                 } else {
 
-                    q.setText("Only a Fish lives here... Time to add a new card :)");
+                    String happyMoji = new String(Character.toChars(HAPPY_EMOJI_UNI_CODE));
+
+                    q.setText("Only a Fish lives here... Time to add a new card " + happyMoji);
                     a.setText("Tap on the plus button to add a card.");
                     findViewById(R.id.just_fish_image).setVisibility(View.VISIBLE);
 
@@ -137,6 +146,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    // returns a random card index
+    private int getRandIndex(){
+
+        Random r = new Random();
+
+        return r.nextInt(allFC.size()) + 0;
     }
 
 
