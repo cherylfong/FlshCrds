@@ -1,6 +1,7 @@
 package com.cherylfong.flshcrds;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,7 +18,8 @@ public class MainActivity extends AppCompatActivity {
     FlashcardDatabase fcDB; // db holder
     List<Flashcard> allFC; // all flash card objects
 
-    int currCardIndex = 0;
+    private int currCardIndex = 0;
+
 
     public static final int ADD_CARD_REQUEST_CODE = 100;
 
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getWindow().getDecorView().setBackgroundColor(Color.WHITE);
 
         // initialize db
         fcDB = new FlashcardDatabase(this.getApplicationContext());
@@ -64,22 +67,19 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.addCardButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(MainActivity.this, AddCard.class);
                 startActivityForResult(intent, 100);
 
             }
         });
 
-        // next button
-
         findViewById(R.id.nextCardButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
                 // do this if only there's something in database
                 if(allFC.size() != 0){
-
 
                     TextView q = findViewById(R.id.flashc_question);
                     TextView a = findViewById(R.id.flashc_answer);
@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
                         currCardIndex = 0;
                     }else {
                         // increment the next card index when tapped
-
                         currCardIndex++;
                     }
 
@@ -99,14 +98,47 @@ public class MainActivity extends AppCompatActivity {
 
                     q.setVisibility(View.VISIBLE);
                     a.setVisibility(View.INVISIBLE);
-
                 }
+            }
+        });
 
+        findViewById(R.id.deleteCardButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                TextView q = findViewById(R.id.flashc_question);
+                String q_string = q.getText().toString();
+
+                TextView a = findViewById(R.id.flashc_answer);
+
+                // delete question and answer
+                fcDB.deleteCard(q_string);
+
+                // update list
+                allFC = fcDB.getAllCards();
+
+                if(allFC.size() != 0){
+                    q.setText(allFC.get(allFC.size()-1).getQuestion());
+                    a.setText(allFC.get(allFC.size()-1).getAnswer());
+                    q.setVisibility(View.VISIBLE);
+                    a.setVisibility(View.INVISIBLE);
+
+                } else {
+
+                    q.setText("Only a Fish lives here... Time to add a new card :)");
+                    a.setText("Tap on the plus button to add a card.");
+                    findViewById(R.id.just_fish_image).setVisibility(View.VISIBLE);
+
+                    findViewById(R.id.bubble1).setVisibility(View.VISIBLE);
+                    findViewById(R.id.bubble2).setVisibility(View.VISIBLE);
+                    findViewById(R.id.bubble3).setVisibility(View.VISIBLE);
+                }
             }
         });
 
 
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -130,7 +162,22 @@ public class MainActivity extends AppCompatActivity {
 
                     fcDB.insertCard(new Flashcard(quest, ans));
                     allFC = fcDB.getAllCards(); // updates the list of flashcard objects
+
+                    currCardIndex++;
+
+                    findViewById(R.id.just_fish_image).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.bubble1).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.bubble2).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.bubble3).setVisibility(View.INVISIBLE);
+
                 }
+            }
+
+            if(allFC.size() == 0){
+                findViewById(R.id.just_fish_image).setVisibility(View.VISIBLE);
+                findViewById(R.id.bubble1).setVisibility(View.VISIBLE);
+                findViewById(R.id.bubble2).setVisibility(View.VISIBLE);
+                findViewById(R.id.bubble3).setVisibility(View.VISIBLE);
             }
         }
     }
