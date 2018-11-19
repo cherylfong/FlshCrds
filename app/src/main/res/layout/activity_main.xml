@@ -43,11 +43,65 @@
 
     <ImageView
         android:id="@+id/nextCardButton"
-        android:layout_width="52dp"
-        android:layout_height="46dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="256dp"
         app:srcCompat="@drawable/next_card" />
+
+    <ImageView
+        android:id="@+id/just_fish_image"
+        android:layout_width="227dp"
+        android:layout_height="240dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="73dp"
+        android:layout_marginBottom="21dp"
+        android:visibility="invisible"
+        app:srcCompat="@mipmap/gold_fish" />
+
+    <ImageView
+        android:id="@+id/deleteCardButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="318dp"
+        android:layout_marginBottom="252dp"
+        app:srcCompat="@drawable/delete_card" />
+
+    <ImageView
+        android:id="@+id/bubble1"
+        android:layout_width="46dp"
+        android:layout_height="74dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="262dp"
+        android:layout_marginBottom="117dp"
+        android:visibility="invisible"
+        app:srcCompat="@mipmap/fish_bubble" />
+
+    <ImageView
+        android:id="@+id/bubble3"
+        android:layout_width="63dp"
+        android:layout_height="63dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="215dp"
+        android:layout_marginBottom="215dp"
+        android:visibility="invisible"
+        app:srcCompat="@mipmap/fish_bubble" />
+
+    <ImageView
+        android:id="@+id/bubble2"
+        android:layout_width="88dp"
+        android:layout_height="74dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="245dp"
+        android:layout_marginBottom="172dp"
+        android:visibility="invisible"
+        app:srcCompat="@mipmap/fish_bubble" />
 </android.widget.RelativeLayout>
