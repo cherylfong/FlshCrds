@@ -2,6 +2,7 @@ package com.cherylfong.flshcrds;
 
 import android.arch.persistence.room.Room;
 import android.content.Context;
+import android.util.Log;
 
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class FlashcardDatabase {
     }
 
     public void insertCard(Flashcard flashcard) {
+        Log.i("FISH", "inserting");
         db.flashcardDao().insertAll(flashcard);
     }
 

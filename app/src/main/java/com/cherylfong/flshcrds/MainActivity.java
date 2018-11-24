@@ -2,6 +2,7 @@ package com.cherylfong.flshcrds;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -168,8 +169,17 @@ public class MainActivity extends AppCompatActivity {
 
                 if (requestCode == ADD_CARD_REQUEST_CODE) {
 
+                    // context i.e. flashcard question textview should on the activity that it resides
+                    Snackbar.make(findViewById(R.id.flashc_question),
+                            "Card successful saved",
+                            Snackbar.LENGTH_SHORT)
+                            .show();
+
                     String quest = intent.getExtras().getString("quest");
                     String ans = intent.getExtras().getString("ans");
+
+                    Log.i("FISH q", quest);
+                    Log.i("FISH a", ans);
 
                     TextView qText = findViewById(R.id.flashc_question);
                     TextView aText = findViewById(R.id.flashc_answer);
@@ -177,8 +187,12 @@ public class MainActivity extends AppCompatActivity {
                     qText.setText(quest);
                     aText.setText(ans);
 
+                    Log.i("ADDCARD", "before");
+
                     fcDB.insertCard(new Flashcard(quest, ans));
                     allFC = fcDB.getAllCards(); // updates the list of flashcard objects
+
+                    Log.i("ADDCARD", "after");
 
                     currCardIndex++;
 
@@ -190,12 +204,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-            if(allFC.size() == 0){
-                findViewById(R.id.just_fish_image).setVisibility(View.VISIBLE);
-                findViewById(R.id.bubble1).setVisibility(View.VISIBLE);
-                findViewById(R.id.bubble2).setVisibility(View.VISIBLE);
-                findViewById(R.id.bubble3).setVisibility(View.VISIBLE);
-            }
         }
     }
 
