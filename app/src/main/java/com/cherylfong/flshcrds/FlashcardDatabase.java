@@ -2,18 +2,24 @@ package com.cherylfong.flshcrds;
 
 import android.arch.persistence.room.Room;
 import android.content.Context;
+import android.util.Log;
 
 import java.util.List;
 
 public class FlashcardDatabase {
-    private final AppDatabase db;
+
+    private static AppDatabase db;
 
     FlashcardDatabase(Context context) {
-        db = Room.databaseBuilder(context.getApplicationContext(),
-                AppDatabase.class, "flashcard-database")
-                .allowMainThreadQueries()
-                .fallbackToDestructiveMigration()
-                .build();
+        if(db == null){
+
+            db = Room.databaseBuilder(context.getApplicationContext(),
+                    AppDatabase.class, "flashcards")
+                    .allowMainThreadQueries()
+                    .fallbackToDestructiveMigration()
+                    .build();
+        }
+
     }
 
     public List<Flashcard> getAllCards() {
@@ -21,7 +27,7 @@ public class FlashcardDatabase {
     }
 
     public void insertCard(Flashcard flashcard) {
-        db.flashcardDao().insertAll(flashcard);
+        Log.i("HELPPP", "insertAll() called!"); db.flashcardDao().insertAll(flashcard);
     }
 
     public void deleteCard(String flashcardQuestion) {

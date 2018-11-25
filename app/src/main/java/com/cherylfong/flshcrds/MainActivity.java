@@ -1,6 +1,7 @@
 package com.cherylfong.flshcrds;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,16 +9,41 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
 
 
+    FlashcardDatabase fcdb;
+    List<Flashcard> allFC; // all flashcard objects
+//    String quest, ans, ans2, ans3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // create database
+        // or FlashcardDatabase(this);
+        // getApplicationContext() returns null if app not initialized
+        fcdb = new FlashcardDatabase(this.getApplicationContext());
+
+        // populate flashcard list (all)
+        allFC = fcdb.getAllCards();
+
+        // if there are cards in the db
+        // show the first item during app relaunch (not the default)
+        if(allFC != null && allFC.size() > 0){
+
+            TextView q = findViewById(R.id.flashc_question);
+            q.setText(allFC.get(0).getQuestion());
+
+            TextView a = findViewById(R.id.flashc_answer);
+            a.setText(allFC.get(0).getAnswer());
+
+        }
 
         findViewById(R.id.flashc_question).setOnClickListener(new View.OnClickListener(){
             @Override
@@ -112,6 +138,10 @@ public class MainActivity extends AppCompatActivity {
                     String quest = intent.getExtras().getString("quest");
                     String ans = intent.getExtras().getString("ans");
 
+                    // may be null
+                    String ans2 = intent.getExtras().getString("ans2");
+                    String ans3 = intent.getExtras().getString("ans3");
+
                     TextView qText = findViewById(R.id.flashc_question);
                     TextView aText = findViewById(R.id.flashc_answer);
 
@@ -124,8 +154,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if( toShow ){
 
-                        String ans2 = intent.getExtras().getString("ans2");
-                        String ans3 = intent.getExtras().getString("ans3");
+
                         aText.setText(""); // make similar to invisible
                         qText.setVisibility( View.VISIBLE );
 
@@ -146,6 +175,7 @@ public class MainActivity extends AppCompatActivity {
                         multiA3.setBackgroundResource(R.drawable.solid_color_shape);
                         qText.setBackgroundResource(R.drawable.radial_gradient_shape);
                         qText.setTextSize(30);
+
                     } else {
 
                         findViewById(R.id.multi_choice1).setVisibility( View.INVISIBLE );
@@ -157,13 +187,47 @@ public class MainActivity extends AppCompatActivity {
 
                         qText.setVisibility( View.VISIBLE );
                         aText.setVisibility(View.INVISIBLE);
+
+
                     }
 
+
+                    new dbQueryTask().execute(quest, ans, ans2, ans3);
+
+//                    new Thread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//
+//                            Log.i("HELPPP",  "NEW THREAD!!!" );
+//
+//                            fcdb.insertCard(new Flashcard(quest, ans, ans2, ans3));
+//                        }
+//                    }).start();
 
                 }
             }
         }
     }
 
+    private class dbQueryTask extends AsyncTask<String, String, String>{
 
+        @Override
+        protected String doInBackground(String... strings) {
+
+            String q = strings[0];
+            String a = strings[1];
+            String a2 = strings[2];
+            String a3 = strings[3];
+
+            try{
+
+                fcdb.insertCard(new Flashcard(q, a, a2, a3));
+                allFC = fcdb.getAllCards();
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
 }
