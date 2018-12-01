@@ -1,10 +1,12 @@
 package com.cherylfong.flshcrds;
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -47,8 +49,23 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
 
-                    findViewById(R.id.flashc_answer).setVisibility(View.VISIBLE);
-                    findViewById(R.id.flashc_question).setVisibility(View.INVISIBLE);
+                View ansView = findViewById(R.id.flashc_answer);
+                // get center for clipping circle
+
+                int cx = ansView.getWidth()/2;
+                int cy = ansView.getHeight()/2;
+
+                // get radius for clipping circle
+                float radius = (float) Math.hypot(cx,cy);
+
+                // View Animator, transistion from 0 to View's full radius size
+                Animator ani = ViewAnimationUtils.createCircularReveal(ansView, cx, cy, 0f, radius );
+
+                findViewById(R.id.flashc_question).setVisibility(View.INVISIBLE);
+                ansView.setVisibility(View.VISIBLE);
+
+                ani.setDuration(3000);
+                ani.start();
             }
         });
 
