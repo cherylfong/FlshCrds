@@ -84,6 +84,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, AddCard.class);
                 startActivityForResult(intent, 100);
 
+                // paramL: enter animation for launched activity
+                // paramR: exit animation for closing activity i.e MainActivity
+                overridePendingTransition(R.anim.right_slide, R.anim.left_slide);
+
             }
         });
 
