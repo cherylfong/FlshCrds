@@ -10,7 +10,7 @@ public class FlashcardDatabase {
 
     FlashcardDatabase(Context context) {
         db = Room.databaseBuilder(context.getApplicationContext(),
-                AppDatabase.class, "flashcard-database")
+                AppDatabase.class, "flashcards")
                 .allowMainThreadQueries()
                 .fallbackToDestructiveMigration()
                 .build();
