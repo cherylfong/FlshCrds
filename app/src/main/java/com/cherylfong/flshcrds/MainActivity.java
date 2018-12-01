@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     int currCardIndex = 0;
 
     public static final int ADD_CARD_REQUEST_CODE = 100;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.flashc_question).setVisibility(View.INVISIBLE);
                 ansView.setVisibility(View.VISIBLE);
 
-                ani.setDuration(3000);
+                ani.setDuration(1500);
                 ani.start();
             }
         });
@@ -97,13 +100,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                final Animation leftOutAnim = AnimationUtils.loadAnimation(v.getContext(), R.anim.left_slide);
+                final Animation rightInAnim = AnimationUtils.loadAnimation(v.getContext(), R.anim.right_slide);
+
 
                 // do this if only there's something in database
                 if(allFC.size() != 0){
 
-
-                    TextView q = findViewById(R.id.flashc_question);
-                    TextView a = findViewById(R.id.flashc_answer);
 
                     // when currCardIndex surpasses the last card,
                     // make it back to zero again
@@ -112,14 +115,50 @@ public class MainActivity extends AppCompatActivity {
                     }else {
                         // increment the next card index when tapped
 
+
                         currCardIndex++;
+
+
                     }
 
-                    q.setText(allFC.get(currCardIndex).getQuestion());
-                    a.setText(allFC.get(currCardIndex).getAnswer());
 
-                    q.setVisibility(View.VISIBLE);
-                    a.setVisibility(View.INVISIBLE);
+                    findViewById(R.id.flashc_question).startAnimation(leftOutAnim);
+
+
+                    leftOutAnim.setAnimationListener(new Animation.AnimationListener() {
+
+                        TextView q = findViewById(R.id.flashc_question);
+                        TextView a = findViewById(R.id.flashc_answer);
+
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                            // this method is called when the animation first starts
+
+                            q.setVisibility(View.VISIBLE);
+                            a.setVisibility(View.INVISIBLE);
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            // this method is called when the animation is finished playing
+                            findViewById(R.id.flashc_question).startAnimation(rightInAnim);
+
+                            q.setText(allFC.get(currCardIndex).getQuestion());
+                            a.setText(allFC.get(currCardIndex).getAnswer());
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+                            // we don't need to worry about this method
+                        }
+                    });
+
+
+
+
+
+
 
                 }
 
