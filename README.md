@@ -4,6 +4,26 @@ My flashcard app
 ### App Description
 This app simulates a flashcard by hiding and showing the answer to a question.
 
+## Week 8 Progress
+
+### Walk-though
+The FlshCrds app now have animations that are responsive to a user's actions, such as adding a new card, selecting the next card and revealing the answer to a card.
+
+See branch `w8_v1_required-features-only`
+
+<img src="YOUR_GIF_URL_HERE" width=200><br>
+
+### Required
+- [X] Transition animation when going from the main screen to the add new card screen
+- [X] Reveal animation when flashcard is tapped and the answer is shown
+- [X] Flashcards animation switching to the card
+
+### Optional
+- [ ] Extra styling is added!
+- [ ] User sees a countdown timer for each question
+- [ ] User sees a 'card flip' animation when the card is tapped
+- [ ] User sees a celebration animation with confetti when they answer a question correctly
+
 ## Week 6 Progress
 
 ### Walk-though
@@ -14,7 +34,7 @@ See branch `w6_v1_required-features-only`
 <img src="week6_v1.gif" width=200><br/>
 
 ### Required
-- [X] User can create a card and still see their created card when the app is relaunched.
+- [X] User can create a card and still see their created card when the app is relaunched
 - [X] User can create muliple cards and browse through all created cards
 
 ### Optional
