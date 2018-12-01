@@ -11,7 +11,7 @@ The FlshCrds app now have animations that are responsive to a user's actions, su
 
 See branch `w8_v1_required-features-only`
 
-<img src="YOUR_GIF_URL_HERE" width=200><br>
+<img src="week8_v1.gif" width=200><br>
 
 ### Required
 - [X] Transition animation when going from the main screen to the add new card screen
