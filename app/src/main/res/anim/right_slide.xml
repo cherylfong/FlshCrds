@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 100%p == activity should start at position equal to full width of the window -->
+    <!-- duration is in milliseconds -->
+    <!-- transitions into activity from starting from the right from 100%p to 0 in half a second -->
+    <translate
+        android:fromXDelta="100%p"
+        android:toXDelta="0"
+        android:duration='500' />
+</set>
